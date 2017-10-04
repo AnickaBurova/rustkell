@@ -1,6 +1,6 @@
 [package]
 name = "rustkell"
-version = "0.1.3"
+version = "0.2.0"
 authors = ["Anicka Burova <anicka.burova@gmail.com>"]
 license = "MIT"
 description = "Rustkell is haskell like functions in rust."

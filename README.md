@@ -11,7 +11,7 @@ More functions will come as I will need them.
 Cargo.toml
 ```toml
 [dependencies]
-rustkell = "0.1"
+rustkell = "0.2"
 ```
 
 main.rs
@@ -24,7 +24,7 @@ use std::iter::Iterator;
 fn main() {
     let v = vec![1,2,3,4];
     for t in v.tails() {
-        println!("{:?}", t.into_iter().collect::<Vec<_>>());
+        println!("{:?}", t);
     }
 }
 ```

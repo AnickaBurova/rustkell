@@ -22,7 +22,7 @@ pub trait DataList {
     /// use rustkell::DataList;
     /// let v = vec![1,2,3,4];
     /// for t in v.tails() {
-    ///     println!("{:?}", t.into_iter().collect::<Vec<_>>());
+    ///     println!("{:?}", t);
     /// }
     /// ```
     /// > [1, 2, 3, 4]  
@@ -42,10 +42,33 @@ impl<T> DataList for Vec<T> {
     }
 }
 
+use std::slice::Iter;
+
+impl<'a, T> DataList for Iter<'a, T> {
+    fn tails(&self) -> Tails<Self> {
+        Tails::create(&self)
+    }
+}
+
+#[test]
+fn iter_test_tails() {
+    let v = [1,2,3,4];
+    let b = vec![
+        vec![1,2,3,4],
+        vec![2,3,4],
+        vec![3,4],
+        vec![4],
+        vec![],
+    ];
+    for (a,b) in v.iter().tails().into_iter().zip(b) {
+        let a = a.into_iter().map(|x| *x).collect::<Vec<_>>();
+        assert_eq!(a,b);
+    }
+}
 
 
 #[test]
-fn test_tails() {
+fn vector_test_tails() {
     let v = vec![1,2,3,4];
     let b = vec![
         vec![1,2,3,4],
@@ -55,19 +78,17 @@ fn test_tails() {
         vec![],
     ];
     for (a,b) in v.tails().into_iter().zip(b) {
-        let a = a.into_iter().map(|x| *x).collect::<Vec<_>>();
-        assert_eq!(a,b);
+        assert_eq!(a,&b[..]);
     }
 }
 
 #[test]
-fn test_tails_empty() {
+fn vector_test_tails_empty() {
     let v: Vec<i32> = vec![];
     let b: Vec<Vec<i32>> = vec![
         vec![],
     ];
     for (a,b) in v.tails().into_iter().zip(b) {
-        let a = a.into_iter().map(|x| *x).collect::<Vec<_>>();
-        assert_eq!(a,b);
+        assert_eq!(a,&b[..]);
     }
 }

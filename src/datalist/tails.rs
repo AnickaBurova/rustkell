@@ -15,7 +15,7 @@ use std::slice::Iter;
 /// use rustkell::DataList;
 /// let v = vec![1,2,3,4];
 /// for t in v.tails() {
-///     println!("{:?}", t.into_iter().collect::<Vec<_>>());
+///     println!("{:?}", t);
 /// }
 /// ```
 /// > [1, 2, 3, 4]  
@@ -42,6 +42,21 @@ impl<'a, T: 'a> Tails<'a, T> {
 
 
 impl<'a, T> Iterator for Tails<'a, Vec<T>> {
+    type Item = &'a[T];
+
+    fn next(&mut self) -> Option<Self::Item> {
+        if self.last {
+            None
+        } else {
+            let res = &self.iter[self.index..];
+            self.last = res.len() == 0;
+            self.index += 1;
+            Some(res)
+        }
+    }
+}
+
+impl<'a, T> Iterator for Tails<'a, Iter<'a, T>> {
     type Item = Skip<Iter<'a,T>>;
 
     fn next(&mut self) -> Option<Self::Item> {
@@ -49,12 +64,14 @@ impl<'a, T> Iterator for Tails<'a, Vec<T>> {
             None
         } else {
             // get the result here
-            let res = self.iter.iter().skip(self.index);
+            let tmp = self.iter.clone();
+            let res = tmp.skip(self.index);
             // check if this is the last one
             // using peekable because I cannot find any other efficient method!
             self.last = res.peekable().peek().is_none();
             // peekable moved our result so need to get it again
-            let res = self.iter.iter().skip(self.index);
+            let tmp = self.iter.clone();
+            let res = tmp.skip(self.index);
             self.index += 1;
             Some(res)
         }
