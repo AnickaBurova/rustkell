@@ -1,0 +1,7 @@
+/target/
+**/*.rs.bk
+Cargo.lock
+.versionrc
+.version_upgrade
+.vimrc
+.*.sw[op]

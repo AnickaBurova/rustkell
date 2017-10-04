@@ -1,0 +1,6 @@
+[package]
+name = "rustkell"
+version = "0.1.0"
+authors = ["milan"]
+
+[dependencies]
