@@ -50,6 +50,28 @@ impl<'a, T> DataList for Iter<'a, T> {
     }
 }
 
+impl<'a, T> DataList for &'a[T] {
+    fn tails(&self) -> Tails<Self> {
+        Tails::create(&self)
+    }
+}
+
+#[test]
+fn slice_test_tails() {
+    let v = [1,2,3,4];
+    let b = vec![
+        vec![1,2,3,4],
+        vec![2,3,4],
+        vec![3,4],
+        vec![4],
+        vec![],
+    ];
+    for (a,b) in (&v[..]).tails().into_iter().zip(b) {
+        assert_eq!(a,&b[..]);
+    }
+}
+
+
 #[test]
 fn iter_test_tails() {
     let v = [1,2,3,4];
@@ -83,6 +105,17 @@ fn vector_test_tails() {
 }
 
 #[test]
+fn slice_test_tails_empty() {
+    let v: [i32;0] = [];
+    let b: Vec<Vec<i32>> = vec![
+        vec![],
+    ];
+    for (a,b) in (&v[..]).tails().into_iter().zip(b) {
+        assert_eq!(a,&b[..]);
+    }
+}
+
+#[test]
 fn vector_test_tails_empty() {
     let v: Vec<i32> = vec![];
     let b: Vec<Vec<i32>> = vec![
@@ -90,5 +123,17 @@ fn vector_test_tails_empty() {
     ];
     for (a,b) in v.tails().into_iter().zip(b) {
         assert_eq!(a,&b[..]);
+    }
+}
+
+#[test]
+fn iter_test_tails_empty() {
+    let v: Vec<i32> = vec![];
+    let b: Vec<Vec<i32>> = vec![
+        vec![],
+    ];
+    for (a,b) in v.iter().tails().into_iter().zip(b) {
+        let a = a.into_iter().map(|x| *x).collect::<Vec<_>>();
+        assert_eq!(a,b);
     }
 }

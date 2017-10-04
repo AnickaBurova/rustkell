@@ -1,7 +1,7 @@
 # Rustkell is haskell like functions in rust. [![Build Status](https://travis-ci.org/AnickaBurova/rustkell.svg?branch=master)](https://travis-ci.org/AnickaBurova/rustkell) [![Crates.io](https://img.shields.io/crates/v/rustkell.svg)](https://crates.io/crates/rustkell)
 More functions will come as I will need them.
 
-## [Documentation](https://docs.rs/rustkell/0.2.1/rustkell/)
+## [Documentation](https://docs.rs/rustkell/0.2.2/rustkell/)
 
 
 * tails: The tails function returns all final segments of the list, longest first.

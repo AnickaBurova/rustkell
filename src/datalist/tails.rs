@@ -77,3 +77,20 @@ impl<'a, T> Iterator for Tails<'a, Iter<'a, T>> {
         }
     }
 }
+
+
+impl<'a, T> Iterator for Tails<'a, &'a[T]> {
+    type Item = &'a[T];
+
+    fn next(&mut self) -> Option<Self::Item> {
+        if self.last {
+            None
+        } else {
+            let res = &self.iter[self.index..];
+            self.last = res.len() == 0;
+            self.index += 1;
+            Some(res)
+        }
+    }
+}
+
