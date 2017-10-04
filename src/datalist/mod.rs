@@ -1,3 +1,4 @@
+//! Operations on 'list'
 /**
  * File: src/datalist/mod.rs
  * Author: Anicka Burova <anicka.burova@gmail.com>
@@ -5,6 +6,7 @@
  * Last Modified Date: 04.10.2017
  * Last Modified By: Anicka Burova <anicka.burova@gmail.com>
  */
+
 
 pub mod tails;
 
@@ -23,11 +25,11 @@ pub trait DataList {
     ///     println!("{:?}", t.into_iter().collect::<Vec<_>>());
     /// }
     /// ```
-    /// > [1, 2, 3, 4]
-    /// > [2, 3, 4]
-    /// > [3, 4]
-    /// > [4]
-    /// > []
+    /// > [1, 2, 3, 4]  
+    /// > [2, 3, 4]  
+    /// > [3, 4]  
+    /// > [4]  
+    /// > []  
 
     fn tails(&self) -> Tails<Self>
         where Self: Sized;
