@@ -10,7 +10,7 @@ repository = "https://github.com/AnickaBurova/rustkell"
 documentation = "https://docs.rs/rustkell/0.1.0/rustkell/"
 
 readme = "README.md"
-keywords = ["haskell", "tails", "data.list"]
+keywords = ["haskell", "tails", "datalist"]
 
 
 [dependencies]
