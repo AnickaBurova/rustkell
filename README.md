@@ -22,7 +22,6 @@ use rustkell::DataList;
 use std::iter::Iterator;
 
 fn main() {
-    println!("Hello, world!");
     let v = vec![1,2,3,4];
     for t in v.tails() {
         println!("{:?}", t.into_iter().collect::<Vec<_>>());
