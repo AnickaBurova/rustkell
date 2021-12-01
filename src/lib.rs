@@ -7,7 +7,14 @@
  * Last Modified By: Anicka Burova <anicka.burova@gmail.com>
  */
 
+mod rustkell;
+pub use rustkell::Rustkell;
+
 mod datalist;
+
+mod tails;
+
+mod pairs;
 
 pub use datalist::DataList;
 pub use datalist::Tails;

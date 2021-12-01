@@ -11,20 +11,22 @@ More functions will come as I will need them.
 Cargo.toml
 ```toml
 [dependencies]
-rustkell = "0.2"
+rustkell = "0.3"
 ```
 
 main.rs
 ```rust
 extern crate rustkell;
 
-use rustkell::DataList;
-use std::iter::Iterator;
+use rustkell::Rustkell;
 
 fn main() {
     let v = vec![1,2,3,4];
-    for t in v.tails() {
+    for t in v.iter().tails() {
         println!("{:?}", t);
+    }
+    for p in v.iter().pairs() {
+        println!("{:?}", p);
     }
 }
 ```
@@ -35,6 +37,9 @@ Output:
 > [3, 4]  
 > [4]  
 > []  
+> (1, 2)
+> (2, 3)
+> (3, 4)
 ```
 
 ## License
